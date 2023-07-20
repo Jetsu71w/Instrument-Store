@@ -1,0 +1,30 @@
+﻿@page
+@model ProjectFinal.Pages.actionsLGModel
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+@{
+}
+
+@{
+    Layout = null;
+    var action = Request.Form["action"];
+    var result = "";
+    if(action=="login"){
+
+        var username = Request.Form["uname"];
+        var password = Request.Form["psw"];
+
+        if (username == "itm442" && password=="123"){
+            result = "Login success";
+            HttpContext.Session.SetString("username", username);
+            HttpContext.Session.SetString("displayname", "Musician");
+        }else{
+            result = "Login Failed";
+        }
+
+
+    }
+
+}
+@Html.Raw(result)

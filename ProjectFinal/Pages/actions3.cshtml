@@ -1,0 +1,151 @@
+﻿@page
+@model ProjectFinal.Pages.actions3Model
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+
+@{
+}
+@{
+    Layout = null;
+
+    var action = Request.Query["action"];
+    var ITM_result = "ajax error";
+
+
+    MySqlConnection conn;
+    string server = "localhost";
+    string database = "store";
+    string uid = "root";
+    string password = "12345678";
+    string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";SSL Mode=None;";
+    conn = new MySqlConnection(connectionString);
+    try
+    {
+        conn.Open();
+    }
+    catch (Exception ex)
+    {
+        @Html.Raw("มีปัญหาการเชื่อมต่อฐานข้อมูล")
+        return;
+    }
+
+    if (action == "insert")
+    {
+        var ITM_OrderDetailID = Request.Query["ITM_OrderDetailID"];
+        var ITM_OrderID = Request.Query["ITM_OrderID"];
+        var ITM_ProductID = Request.Query["ITM_ProductID"];
+        var ITM_Quantity = Request.Query["ITM_Quantity"];
+
+
+
+        string sqlCmd = "INSERT INTO orderdetail VALUES(@p1, @p2, @p3, @p4)";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", ITM_OrderDetailID);
+        cmd.Parameters.AddWithValue("@p2", ITM_OrderID);
+        cmd.Parameters.AddWithValue("@p3", ITM_ProductID);
+        cmd.Parameters.AddWithValue("@p4", ITM_Quantity);
+
+
+
+        cmd.ExecuteNonQuery();
+
+
+        ITM_result = "ajax insert success" + " "
+               + ITM_OrderDetailID + " "
+               + ITM_OrderID + " "
+               + ITM_ProductID + " "
+               + ITM_Quantity + " ";
+
+
+    }
+    else if (action == "update")
+    {
+        var ITM_OrderDetailID = Request.Query["ITM_OrderDetailID"];
+        var ITM_OrderID = Request.Query["ITM_OrderID"];
+        var ITM_ProductID = Request.Query["ITM_ProductID"];
+        var ITM_Quantity = Request.Query["ITM_Quantity"];
+
+
+
+        string sqlCmd = "UPDATE orderdetail "
+                      + " SET OrderID = @p2, "
+                      + "  ProductID =  @p3, "
+                      + "  Quantity = @p4 "
+                      + " WHERE OrderDetailID = @p1 ";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", ITM_OrderDetailID);
+        cmd.Parameters.AddWithValue("@p2", ITM_OrderID);
+        cmd.Parameters.AddWithValue("@p3", ITM_ProductID);
+        cmd.Parameters.AddWithValue("@p4", ITM_Quantity);
+
+
+
+
+        cmd.ExecuteNonQuery();
+
+
+
+        ITM_result = "ajax update success";
+    }
+    else if (action == "delete")
+    {
+
+        var ITM_CategoryID = Request.Query["ITM_OrderDetailID"];
+
+        string sqlCmd = "DELETE FROM orderdetail WHERE OrderDetailID = @pcd";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@pcd", ITM_CategoryID);
+        cmd.ExecuteNonQuery();
+
+        ITM_result = "ajax delete success";
+    }
+    else if (action == "select")
+    {
+                var query = Request.Query["query"];
+                string sqlCmd = "SELECT * FROM orderdetail "
+                              + " WHERE OrderDetailID LIKE @p1 "
+                              + "    OR OrderID LIKE @p1"
+                              + "    OR ProductID LIKE @p1"
+                              + "    OR Quantity LIKE @p1";
+
+
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", "%" + query + "%");
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        ITM_result = json_string;
+
+    }
+    else if (action == "fetch_single")
+    {
+
+        var query = Request.Query["query"];
+
+        string sqlCmd = "SELECT * FROM orderdetail "
+                      + " WHERE OrderDetailID = @p1 ";
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", query);
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        ITM_result = json_string;
+
+    }
+    else
+    {
+        ITM_result = "unknow action";
+    }
+
+}
+@Html.Raw( ITM_result)

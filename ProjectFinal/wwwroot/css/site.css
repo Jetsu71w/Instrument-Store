@@ -1,0 +1,32 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+* {
+    font-family: 'Audiowide', cursive;
+}
+
+background {
+    background-image: url('https://rare-gallery.com/mocahbig/395912-wallpaper-dj-marshmello-art-4k-hd.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+h2 {
+    text-shadow: 2px 2px #ff0000;
+}

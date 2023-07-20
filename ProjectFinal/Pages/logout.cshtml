@@ -1,0 +1,23 @@
+﻿@page
+@model ProjectFinal.Pages.logoutModel
+@{
+}
+
+@{
+    if (HttpContext.Session.GetString("username") == null)
+    {
+    <script>alert("You are not logged in. Please login to access.");</script>
+    <script>window.location.replace("./Login");</script>
+
+    }
+    var displayname = HttpContext.Session.GetString("displayname");
+}
+
+@{
+    HttpContext.Session.Remove("username");
+    HttpContext.Session.Remove("displayname");
+}
+<div class="text-center">
+Logout this @displayname account success.
+</div>
+

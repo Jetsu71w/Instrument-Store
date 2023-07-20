@@ -1,0 +1,241 @@
+﻿@page
+@model ProjectFinal.Pages.ui4Model
+@{
+    if (HttpContext.Session.GetString("username") == null)
+    {
+		<script>alert("Please login before going to this page.");</script>
+        <script>window.location.replace("./Login");</script>
+    }
+    var displayname = HttpContext.Session.GetString("displayname");
+
+}
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			selectData("");
+
+
+			$("#ITM_insert4").click(function () { insertData(); });
+			$("#ITM_update4").click(function () { updateData(); });
+			$("#ITM_delete4").click(function () { deleteData($("#ITM_OrderID").val()); });
+			$("#search4").click(function () { selectData($("#query").val()); });
+
+
+			$(document).on('click', '.edit', function () {
+				var id = $(this).attr("id");
+				fetchSingleData(id);
+
+			});
+
+
+			$(document).on('click', '.delete', function () {
+				var id = $(this).attr("id");
+				var result = confirm("Want to delete this OrderID = " + id + " ?");
+				if (result) deleteData(id);
+
+			});
+
+		});
+
+
+		function CreateTableFromJSON(json_data) {
+			if (json_data.length == 0) return "";
+
+			var col = [];
+			for (var key in json_data[0]) {
+				if (col.indexOf(key) === -1) {
+					col.push(key);
+				}
+			}
+
+			var table = document.createElement("table");
+
+
+
+			var tr = table.insertRow(-1);
+
+			for (var i = 0; i < col.length; i++) {
+				var th = document.createElement("th");
+				th.innerHTML = col[i];
+				tr.appendChild(th);
+			}
+
+			var edit_header = document.createElement("th");
+			edit_header.innerHTML = "Edit";
+			tr.appendChild(edit_header);
+
+			var delete_header = document.createElement("th");
+			delete_header.innerHTML = "Delete";
+			tr.appendChild(delete_header);
+
+
+
+			for (var i = 0; i < json_data.length; i++) {
+
+				tr = table.insertRow(-1);
+
+				for (var j = 0; j < col.length; j++) {
+					var tabCell = tr.insertCell(-1);
+					tabCell.innerHTML = json_data[i][col[j]];
+				}
+
+				var id = json_data[i][col[0]];
+
+				var tabCell = tr.insertCell(-1);
+				tabCell.innerHTML = '<button type="button" name="edit" class="btn btn-danger btn-xs edit" id="' + id + '">Edit</button>';
+
+				tabCell = tr.insertCell(-1);
+				tabCell.innerHTML = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="' + id + '">Delete</button>';
+
+
+			}
+
+			return table;
+		}
+
+		function insertData() {
+
+			$.ajax({
+				url: "./actions4",
+				method: "GET",
+				headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+				data: {
+					action: "insert",
+					ITM_OrderID: $("#ITM_OrderID").val(),
+					ITM_ProductID: $("#ITM_ProductID").val(),
+					ITM_OrderDate: $("#ITM_OrderDate").val(),
+					ITM_CustomerID: $("#ITM_CustomerID").val(),
+
+				},
+				success: function (data) { alert(data); selectData(""); },
+				error: function (xhr, ajaxOptions, thrownError) { alert(thrownError); }
+			});
+		}
+
+		function updateData() {
+			$.ajax({
+				url: "./actions4",
+				method: "GET",
+				headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+				data: {
+					action: "update",
+					ITM_OrderID: $("#ITM_OrderID").val(),
+					ITM_ProductID: $("#ITM_ProductID").val(),
+					ITM_OrderDate: $("#ITM_OrderDate").val(),
+					ITM_CustomerID: $("#ITM_CustomerID").val(),
+
+
+				},
+				success: function (data) { alert(data); selectData(""); },
+				error: function (xhr, ajaxOptions, thrownError) { alert(thrownError); }
+			});
+		}
+
+		function deleteData(OrderID) {
+			$.ajax({
+				url: "./actions4",
+				method: "GET",
+				headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+				data: {
+					action: "delete",
+					ITM_OrderID: OrderID
+				},
+				success: function (data) { alert(data); selectData(""); },
+				error: function (xhr, ajaxOptions, thrownError) { alert(thrownError); }
+			});
+		}
+
+
+		function selectData(query) {
+			$.ajax({
+				url: "./actions4",
+				method: "GET",
+				headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+				data: {
+					action: "select",
+					query: query
+				},
+				dataType: "json",
+				success: function (data) {
+					var table = CreateTableFromJSON(data);
+					var divContainer = $("#ITM_result");
+					divContainer.addClass("table table-striped");
+					divContainer.html(table);
+				},
+				error: function (xhr, ajaxOptions, thrownError) { alert(thrownError); }
+			});
+		}
+
+		function fetchSingleData(id) {
+
+			$.ajax({
+				url: "./actions4",
+				method: "GET",
+				headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+				data: {
+					action: "fetch_single",
+					query: id
+				},
+				dataType: "json",
+				success: function (data) {
+					if (data.lenth < 1) return;
+					$("#ITM_OrderID").val(data[0]["OrderID"]);
+					$("#ITM_ProductID").val(data[0]["ProductID"]);
+					$("#ITM_OrderDate").val(data[0]["OrderDate"]);
+					$("#ITM_CustomerID").val(data[0]["CustomerID"]);
+
+
+				},
+				error: function (xhr, ajaxOptions, thrownError) { alert(thrownError); }
+			});
+		}
+
+	</script>
+</head>
+
+<form>
+	@Html.AntiForgeryToken()
+
+
+	<div class="form-group">
+		<label>Order ID</label>
+		<input type="text" name="ITM_OrderID" id="ITM_OrderID" class="form-control" />
+	</div>
+
+	<div class="form-group">
+		<label>Product ID</label>
+		<input type="text" name="ITM_ProductID" id="ITM_ProductID" class="form-control" />
+	</div>
+
+	<div class="form-group">
+		<label>Order Date</label>
+		<input type="text" name="ITM_OrderDate" id="ITM_OrderDate" class="form-control" />
+	</div>
+
+	<div class="form-group">
+		<label>Customer ID</label>
+		<input type="text" name="ITM_CustomerID" id="ITM_CustomerID" class="form-control" />
+	</div>
+
+
+	<br>
+
+	<div class="form-group">
+		<input type="button" id="ITM_insert4" value="Add" />
+		<input type="button" id="ITM_update4" value="Edit" />
+		<input type="button" id="ITM_delete4" value="Delete" />
+	</div>
+	<br>
+	<div class="form-group">
+		Product:
+		<input type="text" name="query" id="query" />
+		<input type="button" id="search4" value="Search" />
+	</div>
+	<div style="margin-top:20px;margin-left:20px;">
+		<div class="col-12 text-center">
+	<div class="row" id="ITM_result"></div>
+	</div>
+	</div>
+</form>

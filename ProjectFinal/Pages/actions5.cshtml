@@ -1,0 +1,159 @@
+﻿@page
+@model ProjectFinal.Pages.actions5Model
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+
+@{
+}
+@{
+    Layout = null;
+
+    var action = Request.Query["action"];
+    var ITM_result = "ajax error";
+   
+
+
+    MySqlConnection conn;
+    string server = "localhost";
+    string database = "store";
+    string uid = "root";
+    string password = "12345678";
+    string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";SSL Mode=None;";
+    conn = new MySqlConnection(connectionString);
+    try
+    {
+        conn.Open();
+    }
+    catch (Exception ex)
+    {
+        @Html.Raw("มีปัญหาการเชื่อมต่อฐานข้อมูล")
+        return;
+    }
+
+    if (action == "insert")
+    {
+        var ITM_ProductsID = Request.Query["ITM_ProductsID"];
+        var ITM_ProductName = Request.Query["ITM_ProductName"];
+        var ITM_CategoryID = Request.Query["ITM_CategoryID"];
+        var ITM_Unit = Request.Query["ITM_Unit"];
+        var ITM_Price = Request.Query["ITM_Price"];
+
+
+
+        string sqlCmd = "INSERT INTO products VALUES(@p1, @p2, @p3, @p4, @p5)";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", ITM_ProductsID);
+        cmd.Parameters.AddWithValue("@p2", ITM_ProductName);
+        cmd.Parameters.AddWithValue("@p3", ITM_CategoryID);
+        cmd.Parameters.AddWithValue("@p4", ITM_Unit);
+        cmd.Parameters.AddWithValue("@p5", ITM_Price);
+
+
+
+        cmd.ExecuteNonQuery();
+
+
+        ITM_result = "ajax insert success" + " "
+               + ITM_ProductsID + " "
+               + ITM_ProductName + " "
+               + ITM_CategoryID + " "
+               + ITM_Unit + " "
+               + ITM_Price + " ";
+
+
+    }
+    else if (action == "update")
+    {
+        var ITM_ProductsID = Request.Query["ITM_ProductsID"];
+        var ITM_ProductName = Request.Query["ITM_ProductName"];
+        var ITM_CategoryID = Request.Query["ITM_CategoryID"];
+        var ITM_Unit = Request.Query["ITM_Unit"];
+        var ITM_Price = Request.Query["ITM_Price"];
+
+
+
+        string sqlCmd = "UPDATE products "
+                      + " SET ProductName = @p2, "
+                      + "  CategoryID = @p3, "
+                      + "  Unit = @p4, "
+                      + "  Price = @p5 "
+                      + " WHERE ProductsID = @p1 ";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", ITM_ProductsID);
+        cmd.Parameters.AddWithValue("@p2", ITM_ProductName);
+        cmd.Parameters.AddWithValue("@p3", ITM_CategoryID);
+        cmd.Parameters.AddWithValue("@p4", ITM_Unit);
+        cmd.Parameters.AddWithValue("@p5", ITM_Price);
+
+
+
+
+        cmd.ExecuteNonQuery();
+
+
+
+        ITM_result = "ajax update success";
+    }
+    else if (action == "delete")
+    {
+
+        var ITM_CategoryID = Request.Query["ITM_ProductsID"];
+
+        string sqlCmd = "DELETE FROM products WHERE ProductsID = @pcd";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@pcd", ITM_CategoryID);
+        cmd.ExecuteNonQuery();
+
+        ITM_result = "ajax delete success";
+    }
+    else if (action == "select")
+    {
+        var query = Request.Query["query"];
+        string sqlCmd = "SELECT * FROM products "
+                      + " WHERE ProductsID LIKE @p1 "
+                      + "    OR ProductName LIKE @p1"
+                      + "    OR CategoryID LIKE @p1"
+                      + "    OR Unit LIKE @p1"
+                      + "    OR Price LIKE @p1";
+
+
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", "%" + query + "%");
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        ITM_result = json_string;
+
+    }
+    else if (action == "fetch_single")
+    {
+
+        var query = Request.Query["query"];
+
+        string sqlCmd = "SELECT * FROM products "
+                      + " WHERE ProductsID = @p1 ";
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", query);
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        ITM_result = json_string;
+
+    }
+    else
+    {
+        ITM_result = "unknow action";
+    }
+
+}
+@Html.Raw( ITM_result)

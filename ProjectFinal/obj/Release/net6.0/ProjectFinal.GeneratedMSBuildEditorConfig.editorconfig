@@ -1,0 +1,117 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ProjectFinal
+build_property.RootNamespace = ProjectFinal
+build_property.ProjectDir = C:\Users\jawel\Desktop\All University Project\FinalFinal\ProjectFinal\ProjectFinal\ProjectFinal\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\jawel\Desktop\All University Project\FinalFinal\ProjectFinal\ProjectFinal\ProjectFinal
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/actions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/actions2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWN0aW9uczIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/actions3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWN0aW9uczMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/actions4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWN0aW9uczQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/actions5.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWN0aW9uczUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/actionsLG.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWN0aW9uc0xHLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/actionss.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWN0aW9uc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Index1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Index2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/ui.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcdWkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/ui2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcdWkyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/ui3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcdWkzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/ui4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcdWk0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/ui5.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcdWk1LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/ui6.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcdWk2LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jawel/Desktop/All University Project/FinalFinal/ProjectFinal/ProjectFinal/ProjectFinal/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-8x7uwz5a0i
